@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to hippocampal_autotop_bids's documentation!
+Hippocampal AutoTop BIDS App
 ====================================================
 
 .. toctree::
@@ -17,9 +17,4 @@ Welcome to hippocampal_autotop_bids's documentation!
 
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
