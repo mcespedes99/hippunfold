@@ -10,6 +10,11 @@ Welcome to hippocampal_autotop_bids's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+.. argparse::
+   :filename: run.py
+   :func: get_parser
+   :prog: hippocampal_autotop_bids
+
 
 
 Indices and tables
