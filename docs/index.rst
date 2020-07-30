@@ -11,7 +11,7 @@ Welcome to hippocampal_autotop_bids's documentation!
    :caption: Contents:
 
 .. argparse::
-   :filename: run.py
+   :filename: ../run.py
    :func: get_parser
    :prog: hippocampal_autotop_bids
 
