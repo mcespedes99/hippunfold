@@ -1,9 +1,9 @@
-.. hippocampal_autotop_bids documentation master file, created by
+.. hippunfold documentation master file, created by
    sphinx-quickstart on Thu Jul 30 10:15:34 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Hippocampal AutoTop BIDS App
+hippunfold BIDS App
 ====================================================
 
 .. toctree::
@@ -23,7 +23,7 @@ The overall workflow can be summarized in the following steps:
 
 0. Resampling to a 0.3mm isotropic, coronal oblique, cropped hippocampal block
 
-1. Automatic segmentation of hippocampal tissues and surrounding structures via deep convolutional neural network U-net ([Li _et al_., 2017](https://arxiv.org/abs/1707.01992)) _OR_ Manual segmentation of hippocampal tissues and surrounding structures using [this](https://ars.els-cdn.com/content/image/1-s2.0-S1053811917309977-mmc1.pdf) protocol
+1. Automatic segmentation of hippocampal tissues and surrounding structures via deep convolutional neural network U-net `Li _et al_., 2017 <https://arxiv.org/abs/1707.01992>`_ _OR_ Manual segmentation of hippocampal tissues and surrounding structures using `this <https://ars.els-cdn.com/content/image/1-s2.0-S1053811917309977-mmc1.pdf>`_ protocol
 
 2. Post-processing via fluid label-label registration to a high resolution, topoligically correct averaged template
 
@@ -41,7 +41,7 @@ Usage
 .. argparse::
    :filename: ../parse.py
    :func: get_parser
-   :prog: hippocampal_autotop_bids
+   :prog: hippunfold
 
 
 
