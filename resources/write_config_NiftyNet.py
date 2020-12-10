@@ -1,28 +1,38 @@
+# write config file for NiftyNet highres3dnet network training using these default parameters. First argument is the training directory, second argument is the output directory, third argument specifies number of iterations, and fourht (optional) an existing model to bootstrap.
+
+import sys
 import configparser
 import os
 import shutil
-
-
+import glob
 
 # input arguments
-# TODO: make this a proper function
-trainingdir = '../training_data_b1000/'
-newmodeldir = 'testmodel'
-bootstrapmodel = '' # Optional. To resume training a timed out model, specify it here.
 
+trainingdir = sys.argv[1] #'../training_data_b1000/'
+newmodeldir = sys.argv[2] #'testmodel'
+iterations = sys.argv[3] #'testmodel'
+try:
+	os.mkdir(newmodeldir)
+except:
+	print('output directory already exists')
 
-
-os.mkdir(newmodeldir)
-if bootstrapmodel != '':
+# copy over bootstrapped CNN model
+if len(sys.argv) == 5:
+	bootstrapmodel = sys.argv[4]
 	shutil.copytree(bootstrapmodel + '/models/', newmodeldir + '/models/')
 	start_iter = '-1'
-else:
+	# add existing iterations to max iterations
+	fn = glob.glob(newmodeldir + '/models/*.index')[0]
+	i = fn.find('ckpt-')[0]
+	fn = fn[i+5:-6]
+	iterations = int(iterations) + int(fn)
+elif len(sys.argv) == 4:
+	bootstrapmodel = '' # Optional. To resume training a timed out model, specify it here.
 	start_iter = '0'
+else:
+	print('Error wrong number of input arguments')
 
-
-
-
-
+# write config file with default values
 config = configparser.ConfigParser()
 
 config['IMG'] = {'path_to_search': trainingdir,
@@ -55,7 +65,7 @@ config['TRAINING'] = {'sample_per_volume': '5',
 		'starting_iter': start_iter,
 		'save_every_n': '1000',
 		'tensorboard_every_n': '100',
-		'max_iter': '500000',
+		'max_iter': iterations,
 		'validation_every_n': '100',
 		'exclude_fraction_for_validation': '0.2',
 		'exclude_fraction_for_inference': '0.2',
@@ -86,12 +96,3 @@ config['EVALUATION'] = {'save_csv_dir': newmodeldir + '/eval',
 with open(newmodeldir + '/config.ini', 'w') as configfile:
   config.write(configfile)
 
-
-# TO BE RUN IN BASH
-# requires niftynet
-net_segment -c newmodeldir/config.ini train
-net_segment -c newmodeldir/config.ini inference
-net_segment -c newmodeldir/config.ini evaluation
-
-# need to rename this file before AutoTops_transformAndRollOut.m
-os.rename(newmodeldir + '/dataset_split.csv', newmodeldir + '/dataset_split_training.csv')
