@@ -13,9 +13,9 @@ Requirements:
 Notes:
 ^^^^^^
 
-Note 1: T1w-only workflow is available too with ``--modality T1w``\ , however, this is discouraged unless you have high resolution (~0.7mm or better) T1w data, and performance will still likely be sub-optimal. This is currently being evaluated more thoroughly.
+#. T1w-only workflow is available too with ``--modality T1w``\ , however, this is discouraged unless you have high resolution (~0.7mm or better) T1w data, and performance will still likely be sub-optimal. This is currently being evaluated more thoroughly.
 
-Note 2: dwi workflows are also available but currently experimental
+#. dwi workflows are also available but currently experimental
 
 
 Running with Docker:
