@@ -1,10 +1,10 @@
-Installation:
-=============
+Installation
+============
 
 BIDS App for Hippocampal AutoTop (automated hippocampal unfolding and subfield segmentation)
 
-Requirements:
--------------
+Requirements
+------------
 
 * Docker (Mac/Windows/Linux) or Singularity (Linux)
 
@@ -18,8 +18,8 @@ Notes:
 #. dwi workflows are also available but currently experimental
 
 
-Running with Docker:
---------------------
+Running with Docker
+-------------------
 
 Pull the container::
 
@@ -34,8 +34,8 @@ run it with maximum number of cores::
    docker run -it --rm -v PATH_TO_BIDS_DIR:/bids:ro -v PATH_TO_OUTPUT_DIR:/output khanlab/hippunfold:latest /bids /output participant -p --cores all
 
 
-Running with Singularity:
--------------------------
+Running with Singularity
+------------------------
 
 Pull the container::
    
@@ -50,8 +50,8 @@ run it with maximum number of cores::
    singularity run -e khanlab_hippunfold_latest.sif khanlab/hippunfold:latest PATH_TO_BIDS_DIR PATH_TO_OUTPUT_DIR participant  -p --cores all
 
 
-Additional instructions for specific Khan Lab / Compute Canada environments:
-----------------------------------------------------------------------------
+Additional instructions for specific Khan Lab / Compute Canada environments
+---------------------------------------------------------------------------
 
 Setting up a dev environment on graham:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
