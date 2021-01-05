@@ -18,21 +18,15 @@ Note 2: dwi workflows are also available but currently experimental
 Docker:
 ^^^^^^^
 
-Pull the container:
-
-.. code-block::
+Pull the container::
 
    docker pull khanlab/hippunfold:latest
 
-do a dry run, printing the command at each step:
-
-.. code-block::
+do a dry run, printing the command at each step::
 
    docker run -it --rm -v PATH_TO_BIDS_DIR:/bids:ro -v PATH_TO_OUTPUT_DIR:/output khanlab/hippunfold:latest /bids /output participant -np 
 
-run it with maximum number of cores:
-
-.. code-block::
+run it with maximum number of cores::
 
    docker run -it --rm -v PATH_TO_BIDS_DIR:/bids:ro -v PATH_TO_OUTPUT_DIR:/output khanlab/hippunfold:latest /bids /output participant -p --cores all
 
@@ -40,33 +34,26 @@ run it with maximum number of cores:
 Singularity:
 ^^^^^^^^^^^^
 
-Pull the container:
-
-.. code-block::
-
+Pull the container::
+   
    singularity pull khanlab_hippunfold_latest.sif docker://khanlab/hippunfold:latest
 
-do a dry run, printing the command at each step:
-
-.. code-block::
+do a dry run, printing the command at each step::
 
    singularity run -e khanlab_hippunfold_latest.sif khanlab/hippunfold:latest PATH_TO_BIDS_DIR PATH_TO_OUTPUT_DIR participant -np 
 
-run it with maximum number of cores:
-
-.. code-block::
+run it with maximum number of cores::
 
    singularity run -e khanlab_hippunfold_latest.sif khanlab/hippunfold:latest PATH_TO_BIDS_DIR PATH_TO_OUTPUT_DIR participant  -p --cores all
 
 
-Setting up a dev environment:
+Setting up a dev environment on graham (compute canada):
 -----------------------------
 
 Here are some instructions to get your python environment set-up on graham to run hippunfold:
 
 
-#. create a virtualenv and activate it:
-   .. code-block::
+#. create a virtualenv and activate it::
 
       mkdir $SCRATCH/hippdev
       cd $SCRATCH/hippdev
@@ -75,31 +62,23 @@ Here are some instructions to get your python environment set-up on graham to ru
       source venv/bin/activate
 
 #. 
-   clone the source repos (so you can make/pull changes easily, or change to branch):
-
-   .. code-block::
+   clone the source repos (so you can make/pull changes easily, or change to branch)::
 
       git clone --recursive http://github.com/khanlab/hippunfold
 
 #. 
-   install snakebids using pip, with the -e option (for development mode):
-
-   .. code-block::
+   install snakebids using pip, with the -e option (for development mode)::
 
       pip install -e ./hippunfold
 
-Now hippunfold will be installed for you and can run with:
-
-.. code-block::
+Now hippunfold will be installed for you and can run with::
 
    hippunfold  <args here> 
 
 
-Any containers used are included in the hippunfold workflow, and if in khanlab group on graham, will already be good to go..  If you log out, you just need to re-activate the virtualenv to start again 
+Any containers used are included in the hippunfold workflow, and if in khanlab group on graham, will already be good to go..  If you log out, you just need to re-activate the virtualenv to start again. 
 
-If you ever want the latest code, can just pull it:
-
-.. code-block::
+If you ever want the latest code, can just pull it::
 
    cd hippunfold
    git pull
@@ -137,5 +116,5 @@ Scaling up to even more subjects (uses group-components to bundle multiple subje
 
    hippunfold bids_dir out_dir participant  --profile cc-slurm --group-components subj=10
 
-
+Note this requires `neuroglia-helpers <https://github.com/khanlab/neuroglia-helpers>`_ for regularSubmit or regularInteractive wrappers, and the cc-slurm `cc-slurm <https://github.com/khanlab/cc-slurm>`_ snakemake profile for graham cluster execution with slurm. You can use the same command with any other execution profile to run hippunfold on any cluster or cloud platform supported by snakemake (see https://github.com/snakemake-profiles/doc and https://snakemake.readthedocs.io/en/stable/executing/cloud.html for more details on cluster profiles and cloud execution respectively).
 
