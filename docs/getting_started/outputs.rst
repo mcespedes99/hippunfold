@@ -1,5 +1,47 @@
-Installation
-============
+Outputs of hippunfold
+=====================
+
+
+Results
+-------
+
+The `results` folder is a BIDS-derivatives dataset that contains the pre-processed anatomicals used for the segmentation, segmentatioons and hippocampal coordinate images, and HCP-style surfaces of the hippocampus in native and unfolded configurations.
+
+Pre-processed Anatomicals
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Anatomical images that have been non-uniformity corrected, motion-corrected, averaged and registered to the T1w space are placed in each subject's `anat` subfolder::
+
+    results
+    └── sub-{subject}[/ses-{session}]
+        ├── anat
+        │   ├── sub-{subject}_desc-preproc_T1w.nii.gz
+        │   └── sub-{subject}_space-T1w_desc-preproc_T2w.nii.gz
+        ...
+
+Volumetric Segmentations
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Volumetric segmentations... 
+
+
+Additional Files
+----------------
+
+The top-level folder structure of hippunfold is::
+
+    ├── config
+    ├── logs
+    ├── results
+    └── work
+
+The `config` folder contains the hippunfold `snakebids.yml` config file, and `inputs_config.yml` that contain a record of the parameters used, and paths to the inputs.
+
+Workflow steps that write logs to file are stored in the `logs` subfolder, with file names based on the rule wildcards (e.g. subject, hemi, etc..).
+
+Intermediate files are stored in the `work` folder. These files and folders, similar to results, are generally  named according to BIDS.
+
+
 
 BIDS App for Hippocampal AutoTop (automated hippocampal unfolding and subfield segmentation)
 
@@ -9,9 +51,6 @@ Requirements
 * Docker (Mac/Windows/Linux) or Singularity (Linux)
 
 * BIDS dataset with T1w and T2w images. 3D T2w TSE images with 0.8mm isotropic or higher resolution images are highly recommended. The T1w images are only used for linear registration in the default workflow, with the T2w images used for the convolutional neural network segmentation.
-
-* GPU is now required (since moving to nnUnet CNN implementation) - however, we plan to support a CPU-only version in the near future.
-
 
 Notes:
 ^^^^^^
