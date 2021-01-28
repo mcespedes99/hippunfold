@@ -119,7 +119,6 @@ parse_args:
     nargs: '+'
     choices:
       - T1w
-      - 1mmT1w
       - T2w
       - b500
       - segT1w
@@ -133,34 +132,27 @@ parse_args:
     default: False
 
   --skip_preproc:
-    help: 'Set this flag if your inputs (e.g. T2w, dwi) are already pre-processed (default: %(default)s'
+    help: 'Set this flag if your inputs (e.g. T2w, dwi) are already pre-processed (default: %(default)s)'
     default: False
     action: 'store_true'
 
  
   --skip_coreg:
-    help: 'Set this flag if your inputs (e.g. T2w, dwi) are already registered to T1w space (default: %(default)s'
+    help: 'Set this flag if your inputs (e.g. T2w, dwi) are already registered to T1w space (default: %(default)s)'
     default: False
     action: 'store_true'
 
-  
+  --rigid_reg_template:
+    help: 'Use rigid instead of affine for registration to template. Try this if your images are reduced FOV (default: %(default)s)'
+    default: False
+    action: 'store_true'
+
 #--- workflow specific configuration -- 
 
 singularity:
   prepdwi: '/project/6050199/akhanf/singularity/bids-apps/khanlab_prepdwi_latest.sif'  
   fsl: '/project/6050199/akhanf/singularity/bids-apps/fsl_6.0.3_cuda9.1.sif' 
   autotop: '/project/6050199/akhanf/singularity/bids-apps/khanlab_autotop_deps_v0.2.sif'
-
-
-templates:
-  CITI168:   #this is not currently used
-    url: 'https://www.dropbox.com/s/6vkadw76okf8h2q/tpl-CITI168.tar?dl=1'
-    files:
-      - tpl-CITI168/tpl-CITI168_from-orig_to-corobl_type-itk_xfm.txt
-      - tpl-CITI168/tpl-CITI168_hemi-L_space-corobl_desc-cropped_T2w.nii.gz
-      - tpl-CITI168/tpl-CITI168_hemi-R_space-corobl_desc-cropped_T2w.nii.gz
-      - tpl-CITI168/tpl-CITI168_T1w.nii.gz
-      - tpl-CITI168/tpl-CITI168_T2w.nii.gz 
 
 
 template: CITI168
@@ -172,6 +164,9 @@ template_files:
     xfm_corobl: hippocampal_autotop/atlases/CITI/CoronalOblique_rigid.txt
     crop_ref: hippocampal_autotop/atlases/CITI/img_300umCoronalOblique_hemi-{hemi}.nii.gz
 
+
+rigid_reg_template: False
+
 modality:
   - T2w
 
@@ -181,10 +176,18 @@ modality:
 cnn_model:
   T2w: 'HCP1200-T2'
   T1w: 'HCP1200-T1'
-  1mmT1w: 'HCP1200-T1_ds'
   b500: 'HCP1200-b1000'
   b1000: 'HCP1200-b1000'
 
+#--- nnunet
+
+#these will be downloaded to ~/.cache/hippunfold
+nnunet_model:
+    T2w: trained_model.3d_fullres.Task100_hcp1200hippT2w.nnUNetTrainerV2.model_best.tar
+    T1w: trained_model.3d_fullres.Task101_hcp1200_T1w.nnUNetTrainerV2.model_best.tar
+
+
+#-------
 
 #MATLAB vs MCR
 
