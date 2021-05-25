@@ -9,6 +9,7 @@ rule all:
     input: expand('tpl-upenn_dir-{dir}_level-0_coords.nii.gz', dir=['AP','PD','IO'])
 
 rule create_PD_sink:
+    """ this rule is still a WIP and shouldn't be used.. """
     input:
         lbl = 'tpl-upenn_desc-hipptissue_dseg.nii.gz',
     output:
