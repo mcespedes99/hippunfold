@@ -1,6 +1,43 @@
-BIDS whole brain scans
+BIDS whole-brain data
 =====================
-This tutorial will cover applications of HippUnfold to an entire BIDS-compliant dataset, meaning that the same scan types are expected for all subjects which will be processed in parallel. A typical call might look like this:
-```
-hippunfold  PATH_TO_BIDS_DIR PATH_TO_OUTPUT_DIR participant --cores all --use-singularity
-```
+This tutorial will cover applications of HippUnfold to an entire `BIDS-compliant dataset <https://bids.neuroimaging.io/>`_, meaning that the same scan types are expected for all subjects which will be processed in parallel. A typical call might look like this::
+
+  hippunfold  PATH_TO_BIDS_DIR PATH_TO_OUTPUT_DIR participant 
+  
+
+Depending on the method you used for installation, you may require additional arguments such as ``--cores all`` or ``--use-singularity``, or prefixing the command with ``singularity run ``. This will expect ``PATH_TO_BIDS_DIR`` to contain something like the following::
+
+  PATH_TO_BIDS_DIR/
+  └── sub-001/
+      └── anat/
+          ├── sub-001_T1w.nii.gz
+          └── sub-001_T2w.nii.gz
+          
+          
+In this case, the T1w image is used only to register to a standardized template (CITI168), making it possible to reorient, upsample, and crop around the left and right hippocampi (this is referred to within HippUnfold as ``space-corobl``). Note that only the T1w image needs to have a whole-brain field of view. By default, both of these input images are coregistered and preprocessed, but this can be skipped with the flags ``--skip_coreg`` and ``--skip_preproc``, repsectively, if this was already run on the data in ``PATH_TO_BIDS_DIR``. 
+
+More examples of possible BIDS-complaint datasets can be found in https://github.com/khanlab/hippunfold/tree/master/test_data.
+
+Different input modalities
+------------------
+
+Non-BIDS datasets
+------------------
+Wildcards can still be used to enumarate input files if the data are not in BIDS format. For example::
+
+  PATH_TO_BIDS_DIR/
+  └── sub-001/
+      └── anat/
+          ├── sub-001_T1w.nii.gz
+          └── sub-001_T2SPACE.nii.gz
+          └── sub-001_TSE.nii.gz
+
+T2SPACE and TSE are both scn acquisitions that are sensitive to T2-weights, but HippUnfold will not recognize them without the suffix ``_T2w``. We can thus use the ``--path_T2w`` flag to specify exactly what file(s) to use as inputs::
+
+  hippunfold  PATH_TO_BIDS_DIR PATH_TO_OUTPUT_DIR participant --path_T2w PATH_TO_BIDS_DIR/sub-{subject}/sub-{subject}_T2SPACE.nii.gz
+
+This will search ``PATH_TO_BIDS_DIR`` for any any files following the naming scheme and fill in ``{subject}`` IDs for any files it can. Alternatively, ``{subject}`` IDs can be provided in a list with the ``--participant_label`` flag.
+
+No T1w images
+------------------
+It is difficult to automatically reorient and crop images appropriately without a whole-brain T1w image, which we recommend collecting as a part of any acquisition protocol when possible. However, if this is not possible, the T2w image may be used instead by specifying it as the T1w with the ``--path_T1w`` flag. This registration may fail, and is especially likely to fail if the T2w images are not whole-brain. This can sometimes be ameliorated with the ``--rigid_reg_template`` flag
