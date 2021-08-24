@@ -18,7 +18,7 @@ Depending on the method you used for installation, you may require additional ar
           
 In this case, the T1w image is used only to register to a standardized template (CITI168), making it possible to reorient, upsample, and crop around the left and right hippocampi (this is referred to within HippUnfold as ``space-corobl``). Note that only the T1w image needs to have a whole-brain field of view. By default, both of these input images are coregistered and preprocessed, but this can be skipped with the flags ``--skip_coreg`` and ``--skip_preproc``, repsectively, if this was already run on the data in ``PATH_TO_BIDS_DIR``. 
 
-More examples of possible BIDS-complaint datasets can be found in https://github.com/khanlab/hippunfold/tree/master/test_data.
+More examples of possible BIDS-complaint datasets can be found in `hippunfold/test_data/ <https://github.com/khanlab/hippunfold/tree/master/test_data>`_.
 
 Different input modalities
 ------------------
@@ -41,16 +41,16 @@ Non-BIDS datasets
 ------------------
 Wildcards can be used to enumarate input files if the data are not in BIDS format. For example::
 
-  PATH_TO_BIDS_DIR/
+  PATH_TO_nonBIDS_DIR/
   └── sub-001/
       ├── sub-001_T1w.nii.gz
       └── sub-001_T2SPACE.nii.gz
       └── sub-001_TSE.nii.gz
   ...
 
-T2SPACE and TSE are both scn acquisitions that are sensitive to T2-weights, but HippUnfold will not recognize them without the suffix ``_T2w``. We can thus use the ``--path_T2w`` flag to specify exactly what file(s) to use as inputs::
+T2SPACE and TSE are both acquisitions that are sensitive to T2-weights, but HippUnfold will not recognize them without the suffix ``_T2w``. We can thus use the ``--path_T2w`` flag to specify exactly what file(s) to use as inputs::
 
-  hippunfold  PATH_TO_BIDS_DIR PATH_TO_OUTPUT_DIR participant --path_T2w PATH_TO_BIDS_DIR/sub-{subject}/sub-{subject}_T2SPACE.nii.gz
+  hippunfold  PATH_TO_nonBIDS_DIR PATH_TO_OUTPUT_DIR participant --path_T2w PATH_TO_nonBIDS_DIR/sub-{subject}/sub-{subject}_T2SPACE.nii.gz
 
 This will search ``PATH_TO_BIDS_DIR`` for any any files following the naming scheme and fill in ``{subject}`` IDs for any files it can. Alternatively, ``{subject}`` IDs can be provided in a list with the ``--participant_label`` flag.
 
