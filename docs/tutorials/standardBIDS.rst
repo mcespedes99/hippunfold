@@ -43,10 +43,9 @@ Wildcards can be used to enumarate input files if the data are not in BIDS forma
 
   PATH_TO_BIDS_DIR/
   └── sub-001/
-      └── anat/
-          ├── sub-001_T1w.nii.gz
-          └── sub-001_T2SPACE.nii.gz
-          └── sub-001_TSE.nii.gz
+      ├── sub-001_T1w.nii.gz
+      └── sub-001_T2SPACE.nii.gz
+      └── sub-001_TSE.nii.gz
   ...
 
 T2SPACE and TSE are both scn acquisitions that are sensitive to T2-weights, but HippUnfold will not recognize them without the suffix ``_T2w``. We can thus use the ``--path_T2w`` flag to specify exactly what file(s) to use as inputs::
