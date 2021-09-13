@@ -1,7 +1,6 @@
 Outputs of hippunfold
 =====================
 
-
 The ``results`` folder is a BIDS-derivatives dataset that contains the pre-processed anatomicals used for the segmentation, segmentatioons and hippocampal coordinate images, and HCP-style surfaces of the hippocampus in native and unfolded configurations::
 
     results/
@@ -14,7 +13,6 @@ The ``results`` folder is a BIDS-derivatives dataset that contains the pre-proce
         
 Volumetric outputs
 ------------------
-
 
 Anatomical images that have been non-uniformity corrected, motion-corrected, averaged and registered to the ``T1w`` space are placed in each subject's ``anat`` subfolder::
 
@@ -45,29 +43,26 @@ Surface-based GIFTI outputs
 
 Hippunfold produces HCP-style surface-based data in GIFTI format. Similar to the volumetric segmentation data, these files are found in a subfolder named according to the modality used to perform the segmentation, ``surf_{modality}``, which is ``surf_T2w`` by default.
 
-
-
 Surface meshes (geometry files) are in ``.surf.gii`` format, and are provided in both the native space (``space-T1w``) and the unfolded space (``space-unfolded``). In each space, there are ``inner``, ``midthickness``, and ``outer`` surfaces, which correspond to ``white``, ``midthickness``, and ``pial`` for cortical surfaces::
 
     sub-{subject}
      └── surf_T2w
          └── sub-{subject}_hemi-{L,R}_space-{T1w,unfolded}_den-{density}_{inner,midthickness,outer}.surf.gii
  
-The following shows each of these surfaces in ``space-T1w``. ``inner``, ``midthickness``, and ``outer`` are in yellow, orange, and red, respectively.
+The following shows surfaces ``inner``, ``midthickness``, and ``outer`` in yellow, orange, and red, respectively.
 
 .. image:: ../images/inner-mid-outer_sag.png
   :width: 600
 
 Surfaces are provided in different density configurations, and are labelled based on the approximate number of vertices in each. The default densities are `7k` and `2k`, which have approximate vertex spacing of 0.5mm and 1mm respectively. There is also a `400` surface which has 2mm spacing (suitable for lower-resolution BOLD data). Previous versions of hippunfold exclusively used a `32k` template surface, formed by a 254x126 grid in the unfolded space, however a downside of this template is that it results in very non-uniform vertex spacing when transformed to the native space.  The newer `7k`, `2k` and `400` surfaces are designed to have closer to uniform vertex spacing when transformed. 
 
-This is illustrated in the the following ``2k`` mesh in folded and unfolded space. 
+This is illustrated in the the following ``den-2k`` mesh in folded and unfolded space. 
 
 .. image:: ../images/mesh-foldedunfolded2k.png
   :width: 800
 
 
 All surfaces of the same density (e.g. `2k`), in both ``space-T1w`` and ``space-unfolded``, share the same mesh topology and have corresponding vertices with each other. The vertex locations for unfolded surfaces are identical for all subjects as well (note that this of course is not the case for the ``space-T1w`` surfaces). 
-
 
 In addition to the geometry files, surface-based shape metrics are provided in ``.shape.gii`` format. The thickness, curvature and surface area are computed using the same methods as cortical surfaces, based on the surface geometry files, and are provided in the ``T1w`` space. The gyrification metric is the ratio of native to unfolded surface area, or equivalently, the scaling or distortion factor when unfolding::
 
@@ -116,7 +111,7 @@ Here is an example showing coronal slices of the hippocampus with the PD, IO, an
 .. image:: ../images/laplace.png
   :width: 600
 
-Note that these images have been resampled to ``space-corobl`` which is the space in which most processing is done. 
+Note that these images have been resampled to ``space-corobl`` which is the space in which most processing is done internally. These can be seen in the ``work/`` output directory or specified as a possible output space. 
 
 
 Image Transforms
