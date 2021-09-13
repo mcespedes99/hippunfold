@@ -37,7 +37,7 @@ Images in this folder are provided in the ``T1w`` space (same resolution and FOV
 For example, the following Image shows a whole-brain T1w image, a ``space-cropT1w`` overlay of the upsampled T2w image, and an output subfield segmentation:
 
 .. image:: ../images/T1-T2-subfields_sag.png
-  :width: 400
+  :width: 600
 
 
 Surface-based GIFTI outputs
@@ -53,17 +53,17 @@ Surface meshes (geometry files) are in ``.surf.gii`` format, and are provided in
      └── surf_T2w
          └── sub-{subject}_hemi-{L,R}_space-{T1w,unfolded}_den-{density}_{inner,midthickness,outer}.surf.gii
  
-.. image:: images/inner-mid-outer_sag.png
-  :width: 400
+.. image:: ../images/inner-mid-outer_sag.png
+  :width: 600
 
 Surfaces are provided in different density configurations, and are labelled based on the approximate number of vertices in each. The default densities are `7k` and `2k`, which have approximate vertex spacing of 0.5mm and 1mm respectively. There is also a `400` surface which has 2mm spacing (suitable for lower-resolution BOLD data). Previous versions of hippunfold exclusively used a `32k` template surface, formed by a 254x126 grid in the unfolded space, however a downside of this template is that it results in very non-uniform vertex spacing when transformed to the native space.  The newer `7k`, `2k` and `400` surfaces are designed to have closer to uniform vertex spacing when transformed. 
 
 All surfaces of the same density (e.g. `2k`), in both ``space-T1w`` and ``space-unfolded``, share the same mesh topology and have corresponding vertices with each other. The vertex locations for unfolded surfaces are identical for all subjects as well (note that this of course is not the case for the ``space-T1w`` surfaces). 
 
-.. image:: images/mesh-folded2k.png
-  :width: 400
-.. image:: images/mesh-unfolded2k.png
-  :width: 400
+.. image:: ../images/mesh-folded2k.png
+  :width: 600
+.. image:: ../images/mesh-unfolded2k.png
+  :width: 600
 
 In addition to the geometry files, surface-based shape metrics are provided in ``.shape.gii`` format. The thickness, curvature and surface area are computed using the same methods as cortical surfaces, based on the surface geometry files, and are provided in the ``T1w`` space. The gyrification metric is the ratio of native to unfolded surface area, or equivalently, the scaling or distortion factor when unfolding::
 
@@ -71,8 +71,8 @@ In addition to the geometry files, surface-based shape metrics are provided in `
      └── surf_T2w
          └── sub-{subject}_hemi-{L,R}_space-T1w_den-{density}_{thickness,curvature,surfarea,gyrification}.shape.gii
 
-.. image:: images/metrics.png
-  :width: 400
+.. image:: ../images/metrics.png
+  :width: 600
 
 Finally, these files are packaged together for easy viewing in Connectome Workbench, ``wb_view``, in the following ``.spec`` files, for each hemisphere separately, and combined::
 
@@ -107,8 +107,8 @@ Hippunfold also provides images that represent anatomical gradients along the 3 
 
 Here is an example showing coronal slices of the hippocampus with the PD, IO, and AP (sagittal slice) overlaid. Note these images have been resampled to ``space-corobl`` which is the space in which most processing is done. 
 
-.. image:: images/laplace.png
-  :width: 400
+.. image:: ../images/laplace.png
+  :width: 600
 
 
 Image Transforms
