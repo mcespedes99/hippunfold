@@ -6,7 +6,7 @@ This tutorial will cover applications of HippUnfold to an entire `BIDS-compliant
   hippunfold  PATH_TO_BIDS_DIR PATH_TO_OUTPUT_DIR participant 
   
 
-Depending on the method you used for installation, you may require additional arguments such as ``--cores all`` or ``--use-singularity``, or prefixing the command with ``singularity run ``. This will expect ``PATH_TO_BIDS_DIR`` to contain something like the following::
+Depending on the method you used for installation, you may require additional arguments such as ``--cores all`` or ``--use-singularity``, or prefixing the command with ``singularity run``. This will expect ``PATH_TO_BIDS_DIR`` to contain something like the following::
 
   PATH_TO_BIDS_DIR/
   └── sub-001/
