@@ -23,5 +23,5 @@ for d = 1:length(desnities)
     ind = dsearchn(template32.vertices,template.vertices);
     template.vertices = vRec(ind,:);
     figure; plot_gifti(template);
-    save(midthick,['tpl-avg_space-canonical_den-' den '_midthickness.surf.gii']);
+    save(template,['tpl-avg_space-canonical_den-' den '_midthickness.surf.gii']);
 end
