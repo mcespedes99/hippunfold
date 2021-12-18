@@ -74,13 +74,9 @@ Option 2:
 
 This assumes you have created and activated a virtualenv or conda environment first.
 
-#. Clone the repository::
-   
-    git clone --recursive http://github.com/khanlab/hippunfold
+#. Install hippunfold using pip::
 
-#. Install hippunfold using pip, with the -e option (for development mode)::
-
-    pip install -e ./hippunfold
+    pip install hippunfold
 
 #. Run the following to download the U-net models::
 
@@ -93,7 +89,6 @@ This assumes you have created and activated a virtualenv or conda environment fi
 #. To run on all cores, and have snakemake pull any required containers, use::
     
     hippunfold  PATH_TO_BIDS_DIR PATH_TO_OUTPUT_DIR participant --cores all --use-singularity
-
 
 
 
