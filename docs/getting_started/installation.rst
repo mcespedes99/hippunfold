@@ -10,16 +10,17 @@ Requirements
 
 * For the T2w (default) workflow: BIDS dataset with T1w and T2w images. 3D T2w TSE images with 0.8mm isotropic or higher resolution images are highly recommended. The T1w images are only used for linear registration, with the T2w images used for the convolutional neural network segmentation.
 
+* For the T1w workflow: BIDS dataset with T1w images. Higher-resolution data are preferred (<= 0.8mm) but the pipeline will still work with 1mm T1w images.
+
+
+
 * GPU not required
 
 
 Notes:
 ^^^^^^
 
-#. T1w-only workflow is available too with ``--modality T1w``\ , however, this is discouraged unless you have high resolution (~0.7mm or better) T1w data, and performance will still likely be sub-optimal. This is currently being evaluated more thoroughly.
-
 #. dwi workflows are also available but currently experimental
-
 
 
 Running with Docker
