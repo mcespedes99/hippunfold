@@ -17,10 +17,7 @@ Notes:
 ^^^^^^
 
 * T1w and/or T2w input images are supported, and we recommend using sub-millimetric isotropic data for best performance.
-
 * Other 3D imaging modalities (eg. ex-vivo MRI, 3D histology, etc.) can be used, but may require manual tissue segmentation.
-
-* DWI workflows are also available but currently experimental.
 
 
 
