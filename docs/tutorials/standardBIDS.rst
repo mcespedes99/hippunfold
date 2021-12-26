@@ -19,7 +19,7 @@ Depending on the method you used for installation, you may require additional ar
           
 In this case, the T1w image is used only to register to a standardized template (CITI168), making it possible to reorient, upsample, and crop around the left and right hippocampi (this is referred to within HippUnfold as ``space-corobl``). Note that only the T1w image needs to have a whole-brain field of view. By default, both of these input images are coregistered and preprocessed, but this can be skipped with the flags ``--skip_coreg`` and ``--skip_preproc``, repsectively, if this was already run on the data in ``PATH_TO_BIDS_DIR``. 
 
-More examples of possible BIDS-complaint datasets can be found in `hippunfold/test_data/ <https://github.com/khanlab/hippunfold/tree/master/test_data>`_.
+More examples of possible BIDS-compliant datasets can be found in `hippunfold/test_data/ <https://github.com/khanlab/hippunfold/tree/master/test_data>`_.
 
 Different input modalities
 ------------------

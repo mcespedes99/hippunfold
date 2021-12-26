@@ -10,15 +10,17 @@ Requirements
 
 * ``pip install`` is also available (Linux), but will still require singularity to handle some dependencies
 
+* For the T1w workflow: BIDS dataset with T1w images. Higher-resolution data are preferred (<= 0.8mm) but the pipeline will still work with 1mm T1w images.
+
+
+
 * GPU not required
 
 
 Notes:
 ^^^^^^
-
 * T1w and/or T2w input images are supported, and we recommend using sub-millimetric isotropic data for best performance.
 * Other 3D imaging modalities (eg. ex-vivo MRI, 3D histology, etc.) can be used, but may require manual tissue segmentation.
-
 
 
 Running with Docker
