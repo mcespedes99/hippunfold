@@ -118,13 +118,15 @@ Note that these images have been resampled to ``space-corobl`` which is the spac
 Image Transforms
 ^^^^^^^^^^^^^^^^
 
-ITK transforms to warp images from the ``T1w`` space to the ``unfold`` space are provided for each hippocampus::
+ITK transforms to warp images between the ``T1w`` space to the ``unfold`` space, are provided for each hippocampus::
 
     sub-{subject}
      └── seg
          └── sub-{subject}_hemi-{L,R}_from-T1w_to-unfold_mode-image_xfm.nii.gz
+         └── sub-{subject}_hemi-{L,R}_from-unfold_to-T1w_mode-image_xfm.nii.gz
 
-This is an ITK transform that can transform any image that is in ``T1w`` space (can be any resolution and FOV, as long as aligned to ``T1w``), to the ``unfold`` hippocampal volume space. You can use the warp itself as a reference image, e.g.::
+
+These are ITK transforms that can transform any image that is in ``T1w`` space (can be any resolution and FOV, as long as aligned to ``T1w``), to the ``unfold`` hippocampal volume space, and vice-versa. You can use the warp itself as a reference image, e.g.::
 
     antsApplyTransforms -d 3 \
     -i sub-001_space-T1w_FA.nii.gz \
