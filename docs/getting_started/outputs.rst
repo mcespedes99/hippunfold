@@ -54,15 +54,15 @@ The following shows surfaces ``inner``, ``midthickness``, and ``outer`` in yello
 .. image:: ../images/inner-mid-outer_sag.png
   :width: 600
 
-Surfaces are provided in different density configurations, and are labelled based on the approximate number of vertices in each. The default densities are `7k` and `2k`, which have approximate vertex spacing of 0.5mm and 1mm respectively. There is also a `400` surface which has 2mm spacing (suitable for lower-resolution BOLD data). Previous versions of hippunfold exclusively used a `32k` template surface, formed by a 254x126 grid in the unfolded space, however a downside of this template is that it results in very non-uniform vertex spacing when transformed to the native space.  The newer `7k`, `2k` and `400` surfaces are designed to have closer to uniform vertex spacing when transformed. 
+Surfaces are provided in different density configurations, and are labelled based on the approximate vertex spacing in each. The default densities are `0p5mm` and `1mm`, which have approximate vertex spacing of 0.5mm and 1mm respectively. There is also a `2mm` surface which has 2mm spacing (suitable for lower-resolution BOLD data). Previous versions of hippunfold exclusively used a `32k` template surface, formed by a 254x126 grid in the unfolded space, however a downside of this template is that it results in very non-uniform vertex spacing when transformed to the native space (note: this legacy surface is still available as the `unfoldiso` density).  The newer `0p5mm`, `1mm` and `2mm` surfaces are designed to have closer to uniform vertex spacing when transformed. 
 
-This is illustrated in the the following ``den-2k`` mesh in folded and unfolded space. 
+This is illustrated in the the following ``den-1mm`` mesh in folded and unfolded space. 
 
 .. image:: ../images/mesh-foldedunfolded2k.png
   :width: 800
 
 
-All surfaces of the same density (e.g. `2k`), in both ``space-T1w`` and ``space-unfolded``, share the same mesh topology and have corresponding vertices with each other. The vertex locations for unfolded surfaces are identical for all subjects as well (note that this of course is not the case for the ``space-T1w`` surfaces). 
+All surfaces of the same density (e.g. `1mm`), in both ``space-T1w`` and ``space-unfolded``, share the same mesh topology and have corresponding vertices with each other. The vertex locations for unfolded surfaces are identical for all subjects as well (note that this of course is not the case for the ``space-T1w`` surfaces). 
 
 In addition to the geometry files, surface-based shape metrics are provided in ``.shape.gii`` format. The thickness, curvature and surface area are computed using the same methods as cortical surfaces, based on the surface geometry files, and are provided in the ``T1w`` space. The gyrification metric is the ratio of native to unfolded surface area, or equivalently, the scaling or distortion factor when unfolding::
 
