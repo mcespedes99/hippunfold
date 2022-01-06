@@ -1,9 +1,9 @@
 Outputs of hippunfold
 =====================
 
-The ``results`` folder is a BIDS-derivatives dataset that contains the pre-processed anatomicals used for the segmentation, segmentatioons and hippocampal coordinate images, and HCP-style surfaces of the hippocampus in native and unfolded configurations::
+The ``hippunfold`` folder is a BIDS-derivatives dataset that contains the pre-processed anatomicals used for the segmentation, segmentations and hippocampal coordinate images, and HCP-style surfaces of the hippocampus in native and unfolded configurations::
 
-    results/
+    hippunfold/
     ├── dataset_description.json
     └── sub-{subject}
         ├── anat
@@ -143,7 +143,7 @@ The top-level folder structure of hippunfold is::
 
     ├── config
     ├── logs
-    ├── results
+    ├── hippunfold
     └── work
 
 The ``config`` folder contains the hippunfold ``snakebids.yml`` config file, and ``inputs_config.yml`` that contain a record of the parameters used, and paths to the inputs.
@@ -152,5 +152,6 @@ Workflow steps that write logs to file are stored in the ``logs`` subfolder, wit
 
 Intermediate files are stored in the ``work`` folder. These files and folders, similar to results, are generally  named according to BIDS. This folder will have ``tar.gz`` files for each subject, unless the ``--keep_work`` option is used.
 
+If the app is run in workflow mode (`--workflow-mode`/`-W`) which enables direct use of the `snakemake` CLI to run hippunfold, the `hippunfold` and `work` folders will be placed in a `results` folder. 
 
 
