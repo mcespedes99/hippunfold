@@ -78,9 +78,9 @@ These metrics are shown in both folded and unfolded space in the images below. N
 Finally, these files are packaged together for easy viewing in Connectome Workbench, ``wb_view``, in the following ``.spec`` files, for each hemisphere separately, and combined::
 
     sub-{subject}
-     └── surf_T2w
-         ├── sub-{subject}_hemi-{L,R}_den-{density}_hippunfold.spec
-         └── sub-{subject}_den-{density}_hippunfold.spec
+     └── surf
+         ├── sub-{subject}_hemi-{L,R}_space-T1w_den-{density}_surfaces.spec
+         └── sub-{subject}_space-T1w_den-{density}_surfaces.spec
 
 
 Subfield segmentations
