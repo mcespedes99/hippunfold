@@ -37,4 +37,11 @@
    tutorials/standardBIDS
    tutorials/specializedScans
  
+.. toctree::
+   :caption: Contributing
+   :name: contributing
+   :hidden:
+   :maxdepth:1
+
+   contributing/contributing
 
