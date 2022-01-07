@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. include:: ../README.rst
+.. mdinclude:: ../README.md
 
 .. toctree::
    :maxdepth: 1
@@ -37,4 +37,11 @@
    tutorials/standardBIDS
    tutorials/specializedScans
  
+.. toctree::
+   :caption: Contributing
+   :name: contributing
+   :hidden:
+   :maxdepth: 1
+
+   contributing/contributing
 
