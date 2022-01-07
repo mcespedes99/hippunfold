@@ -41,7 +41,7 @@
    :caption: Contributing
    :name: contributing
    :hidden:
-   :maxdepth:1
+   :maxdepth: 1
 
    contributing/contributing
 
