@@ -17,7 +17,6 @@
    :maxdepth: 1
 
    getting_started/installation
-   getting_started/outputs
 
 .. toctree::
   :caption: Usage 
@@ -35,6 +34,7 @@
    :maxdepth: 1
 
    tutorials/standardBIDS
+   tutorials/outputs
    tutorials/specializedScans
  
 .. toctree::
