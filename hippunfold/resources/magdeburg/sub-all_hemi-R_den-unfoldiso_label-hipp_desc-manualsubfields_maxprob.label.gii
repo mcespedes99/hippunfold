@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GIFTI xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://brainvis.wustl.edu/caret6/xml_schemas/GIFTI_Caret.xsd"
+       Version="1"
+       NumberOfDataArrays="1">
+   <MetaData>
+      <MD>
+         <Name><![CDATA[AnatomicalStructurePrimary]]></Name>
+         <Value><![CDATA[CortexRight]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[ParentProvenance]]></Name>
+         <Value><![CDATA[sub-all/sub-all_hemi-R_space-corobl_den-0p5mm_label-hipp_desc-manualsubfields_maxprob.label.gii:
+/usr/bin/wb_command -cifti-separate sub-all/sub-all_space-corobl_den-0p5mm_label-hipp_desc-manualsubfields_maxprob.dlabel.nii COLUMN -label CORTEX_LEFT sub-all/sub-all_hemi-L_space-corobl_den-0p5mm_label-hipp_desc-manualsubfields_maxprob.label.gii -label CORTEX_RIGHT sub-all/sub-all_hemi-R_space-corobl_den-0p5mm_label-hipp_desc-manualsubfields_maxprob.label.gii
+
+]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[ProgramProvenance]]></Name>
+         <Value><![CDATA[Connectome Workbench
+Type: Command Line Application
+Version: 1.5.0
+Qt Compiled Version: 5.7.0
+Qt Runtime Version: 5.7.0
+Commit: 2302e3e5bd77bd626d56600a90990a51ff67fd01
+Commit Date: 2022-01-13 16:37:26 -0600
+Compiled with OpenMP: YES
+Compiler: g++ (/home/caret/gcc/install/gcc-4.8.5/bin)
+Compiler Version: 4.8.5
+Compiled Debug: NO
+Operating System: Linux
+]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[Provenance]]></Name>
+         <Value><![CDATA[/scratch/akhanf/3_processing/magdeburg_atlas/create_atlas/hippunfold-create-atlas/workbench/bin_linux64/../exe_linux64/wb_command -label-resample sub-all/sub-all_hemi-R_space-corobl_den-0p5mm_label-hipp_desc-manualsubfields_maxprob.label.gii /scratch/akhanf/3_processing/magdeburg_atlas/hippunfold/hippunfold/resources/unfold_template_hipp/tpl-avg_space-unfold_den-0p5mm_midthickness.surf.gii /scratch/akhanf/3_processing/magdeburg_atlas/hippunfold/hippunfold/resources/unfold_template_hipp/tpl-avg_space-unfold_den-unfoldiso_midthickness.surf.gii BARYCENTRIC sub-all/sub-all_hemi-R_space-corobl_den-unfoldiso_label-hipp_desc-manualsubfields_maxprob.label.gii -bypass-sphere-check]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[WorkingDirectory]]></Name>
+         <Value><![CDATA[/scratch/akhanf/3_processing/magdeburg_atlas/create_atlas/hippunfold-create-atlas]]></Value>
+      </MD>
+   </MetaData>
+   <LabelTable>
+      <Label Key="0" Red="1" Green="1" Blue="1" Alpha="0"><![CDATA[???]]></Label>
+      <Label Key="1" Red="1" Green="0" Blue="0" Alpha="1"><![CDATA[CA1]]></Label>
+      <Label Key="2" Red="0" Green="1" Blue="0" Alpha="1"><![CDATA[CA2]]></Label>
+      <Label Key="3" Red="0" Green="0" Blue="1" Alpha="1"><![CDATA[DG]]></Label>
+      <Label Key="4" Red="1" Green="1" Blue="0" Alpha="1"><![CDATA[CA3]]></Label>
+      <Label Key="5" Red="0" Green="1" Blue="1" Alpha="1"><![CDATA[Tail]]></Label>
+      <Label Key="6" Red="1" Green="0" Blue="1" Alpha="1"><![CDATA[Label_6]]></Label>
+      <Label Key="7" Red="1" Green="0.937255" Blue="0.835294" Alpha="1"><![CDATA[Label_7]]></Label>
+      <Label Key="8" Red="0.941176" Green="0.337255" Blue="0.878431" Alpha="1"><![CDATA[Sub]]></Label>
+      <Label Key="9" Red="0.803922" Green="0.521569" Blue="0.247059" Alpha="1"><![CDATA[ErC]]></Label>
+      <Label Key="10" Red="0.4" Green="0.803922" Blue="0.666667" Alpha="1"><![CDATA[A35]]></Label>
+      <Label Key="11" Red="0" Green="0" Blue="0.501961" Alpha="1"><![CDATA[A36]]></Label>
+      <Label Key="12" Red="0.901961" Green="0" Blue="0.196078" Alpha="1"><![CDATA[PhC]]></Label>
+      <Label Key="13" Red="0.215686" Green="0.627451" Blue="0.901961" Alpha="1"><![CDATA[Cysts]]></Label>
+      <Label Key="17" Red="0.866667" Green="0.627451" Blue="0.866667" Alpha="1"><![CDATA[Label_17 255]]></Label>
+   </LabelTable>
+<DataArray Intent="NIFTI_INTENT_LABEL"
+           DataType="NIFTI_TYPE_INT32"
+           ArrayIndexingOrder="RowMajorOrder"
+           Dimensionality="1"
+           Dim0="32004"
+           Encoding="GZipBase64Binary"
+           Endian="LittleEndian"
+           ExternalFileName=""
+           ExternalFileOffset="0">
+   <MetaData>
+      <MD>
+         <Name><![CDATA[Name]]></Name>
+         <Value><![CDATA[INDEXMAX]]></Value>
+      </MD>
+   </MetaData>
+   <Data>eJzt18tOHUEMBmHIRcr7P3E2kRKhE5hLT5f9uxYlFgjRc9yfGd7f3t7e//TLzF72M6z3D9Gfr1m1aKM73Gvf7G+0z53utW/G2yTca9+M96l7s/3RPnVvtj/ap+7N9kf7JNy7B2x6tM8K7rVv06J96t5sf7RP3Zvtj/apezMm2qjuzfZHG9W92f5ooxXca9+mRRut4l77NinaaCX32rcJ0T4rute+pUf71L3Z3mibujfbF21S92b7o03q3mx/tEndm+2PNtnBvfYtLdqk7s2YaJcd3Gvf0qJd6t5sf7RL3Zvtj3ape7P90S67uHcHWFK0y47ud9t319jKaJO6P57vGrYq2mRn9zsN0r/fcqI96v5YFc5gOdEeE9w/bbDS/rGMaI+J7lcbrPbuYf2jPaa6X2WQftewnGiDuj+X9m1FtMEp7u8arLJ3LCPaoO6/jt45lhdtcJL7qw7pvWN50Qanuj9jscI7h2VFG5zs/sh86HcNy4v2N9X90fnQv9/you3p/lgVzmA50fYmu6/wN1/786Ld0dHmj7qrcAbLiDZXIdr7UYfV9pD1jTZXIdp25ej7aXrXvf7PlPpcmte9O+Cc88+epfrz6V73mr9vvuuz6l7303fApGfVvO4rNcF99c9B77on7/wdB2d+hn7eDu5pV9Wj70tyR5y++n5H92c/E93r3r52Qp/jiWfSu+5tbrrXvc3ss/9pdK97m5nmdW+mc93bzGg7naNnZ3Yl2k336PmZXY220zl6dmZXo+10jp6d2dVoO52jZ2d2NdpO5+jZmZ2NNpMQPUOzs9FmEqJnaHY22kxC9AzNzkabSYieYXLfCpwhMdpMQvQMk9P9+mgvKdFzTOvbi+gzJUV7SYmeY1KvzOt/bbSXlOg5pvSVee2vifaSEj3HhI6adw9cj3aSFj3PhHT/fLSTtOh5JnTHvfaPRTtJi55n9+6a1/6xaCdp0fPs3ir37oLPo52kRc+ze7p/PtpIYvRMu6f756ONJEbPtHtPutc+7yM1eq6de9q89nkfqdFz7dwu91N3AG0jOXq2Xfrxnwj7U/zTNpK7ev/pO7E73e+PtpHcnbtP3wvSewX76buAtpHc3ft/5Gfo+/Ok+Wr20/zTPlJ7ykHCu0FX9yn+aRvJ6X7Nc9LGdW+632+fNp68F2gjiel+3bPSjlP900YSI9xX3AP/nvPqM9J+09zTNpLb5b7iO8Dq5+nuv9peoG0kR1v5+Lc2wb32tV+9SlZSzOte99Wr5kX3NdN9VtW8PLkDdp6ddprgnraRXGU7q/YAcVbaacIuoG0k18HQHfv0eWmburcE92ft02dNtq/7vq00RDqrZn2K/ad2Ae0ivZXmSXeVzU+zf3cP0CYmdNd9h/fsqtEmq+0C2sKknnavfd3rvl5Pm9e//r/yTxuY2E73+tf9q2gDE7tzX6+6f2X/+8Foo7vtT9kLtINpEeY/dtR8svureyEx2sSE7tzFlfb1r3vdz3N/xvzEPUBb1H1Wd++j7ve6n7ALaBMTquD+rvn/2Z+wI2ijuu9ZBfer7H9mXfe9ol2kt+LuVbI/xXv6TqBdpFfF/dPmz74TpO0J2rH2a0Vap+xPfUegHeu+Tjtdd7Wf5r/D3qBdpKf7c+7dBc9Hm5hQNfeV7fsOoPuUdO8OqNbPf76a7tOifVWPtpFcRfdT94C9jjaS2G/Y9C3j</Data>
+</DataArray>
+</GIFTI>
