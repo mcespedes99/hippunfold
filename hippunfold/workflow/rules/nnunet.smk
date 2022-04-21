@@ -176,22 +176,31 @@ rule unflip_nnunet_nii:
 def get_f3d_ref(wildcards):
     if config["modality"] == "T2w":
         nii = (
-            os.path.join(
-                workflow.basedir,
-                "..",
-                config["template_files"][config["template"]]["crop_ref"],
+            workflow.source_path(
+                os.path.join(
+                    "..",
+                    "..",
+                    config["template_files"][config["template"]]["crop_ref"].format(
+                        **wildcards
+                    ),
+                )
             ),
         )
+
     elif config["modality"] == "T1w":
         nii = (
-            os.path.join(
-                workflow.basedir,
-                "..",
-                config["template_files"][config["template"]]["crop_refT1w"],
+            workflow.source_path(
+                os.path.join(
+                    "..",
+                    "..",
+                    config["template_files"][config["template"]]["crop_refT1w"].format(
+                        **wildcards
+                    ),
+                )
             ),
         )
     else:
-        raise ValueError("modality not supported for nnunet!")
+        raise ValueError("modality not supported for f3d QC!")
     return nii
 
 
@@ -265,10 +274,14 @@ rule qc_nnunet_dice:
             space="template",
             hemi="{hemi}"
         ),
-        ref=os.path.join(
-            workflow.basedir,
-            "..",
-            config["template_files"][config["template"]]["Mask_crop"],
+        ref=lambda wildcards: workflow.source_path(
+            os.path.join(
+                "..",
+                "..",
+                config["template_files"][config["template"]]["Mask_crop"].format(
+                    **wildcards
+                ),
+            )
         ),
     params:
         hipp_lbls=[1, 2, 7, 8],

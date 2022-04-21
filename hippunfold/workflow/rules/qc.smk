@@ -1,9 +1,13 @@
 rule qc_reg_to_template:
     input:
-        ref=lambda wildcards: os.path.join(
-            workflow.basedir,
-            "..",
-            config["template_files"][config["template"]][wildcards.native_modality],
+        ref=lambda wildcards: workflow.source_path(
+            os.path.join(
+                "..",
+                "..",
+                config["template_files"][config["template"]][
+                    wildcards.native_modality
+                ],
+            )
         ),
         flo=bids(
             root=work,
@@ -49,8 +53,8 @@ rule get_subfield_vols_subj:
             hemi=config["hemi"],
             allow_missing=True,
         ),
-        lookup_tsv=os.path.join(
-            workflow.basedir, "..", "resources", "desc-subfields_dseg.tsv"
+        lookup_tsv=workflow.source_path(
+            os.path.join("..", "..", "resources", "desc-subfields_dseg.tsv")
         ),
     group:
         "subj"

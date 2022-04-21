@@ -37,10 +37,12 @@ rule warp_seg_to_corobl_crop:
             desc="affine",
             type_="itk"
         ),
-        ref=os.path.join(
-            workflow.basedir,
-            "..",
-            config["template_files"][config["template"]]["crop_ref"],
+        ref=workflow.source_path(
+            os.path.join(
+                "..",
+                "..",
+                config["template_files"][config["template"]]["crop_ref"],
+            )
         ),
     output:
         nii=bids(

@@ -90,10 +90,14 @@ rule reg_to_template:
             desc="preproc",
             suffix="T1w.nii.gz"
         ),
-        ref=os.path.join(
-            workflow.basedir, "..", config["template_files"][config["template"]]["T1w"]
+        ref=workflow.source_path(
+            os.path.join(
+                "..", "..", config["template_files"][config["template"]]["T1w"]
+            )
         ),
-        xfm_identity=os.path.join(workflow.basedir, "..", config["xfm_identity"]),
+        xfm_identity=workflow.source_path(
+            os.path.join("..", "..", config["xfm_identity"])
+        ),
     params:
         cmd=reg_to_template_cmd,
     output:
@@ -167,10 +171,12 @@ rule compose_template_xfm_corobl:
             desc="affine",
             type_="itk"
         ),
-        std_to_cor=os.path.join(
-            workflow.basedir,
-            "..",
-            config["template_files"][config["template"]]["xfm_corobl"],
+        std_to_cor=workflow.source_path(
+            os.path.join(
+                "..",
+                "..",
+                config["template_files"][config["template"]]["xfm_corobl"],
+            )
         ),
     output:
         sub_to_cor=bids(
@@ -273,15 +279,21 @@ rule warp_t1_to_corobl_crop:
             desc="affine",
             type_="itk"
         ),
-        ref=os.path.join(
-            workflow.basedir,
-            "..",
-            config["template_files"][config["template"]]["crop_ref"],
+        ref=lambda wildcards: workflow.source_path(
+            os.path.join(
+                "..",
+                "..",
+                config["template_files"][config["template"]]["crop_ref"].format(
+                    **wildcards
+                ),
+            )
         ),
-        std_to_cor=os.path.join(
-            workflow.basedir,
-            "..",
-            config["template_files"][config["template"]]["xfm_corobl"],
+        std_to_cor=workflow.source_path(
+            os.path.join(
+                "..",
+                "..",
+                config["template_files"][config["template"]]["xfm_corobl"],
+            )
         ),
     output:
         t1=bids(
