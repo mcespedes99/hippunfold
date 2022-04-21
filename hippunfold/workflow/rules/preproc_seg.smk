@@ -1,17 +1,12 @@
 rule import_seg:
     input:
         lambda wildcards: expand(
-            config["input_path"]["seg"],
+            input_path["seg"],
             zip,
-            **snakebids.filter_list(config["input_zip_lists"]["seg"], wildcards)
+            **snakebids.filter_list(input_zip_lists["seg"], wildcards)
         )[0],
     output:
-        bids(
-            root=work,
-            datatype="anat",
-            **config["input_wildcards"]["seg"],
-            suffix="dseg.nii.gz"
-        ),
+        bids(root=work, datatype="anat", **input_wildcards["seg"], suffix="dseg.nii.gz"),
     group:
         "subj"
     shell:
@@ -22,15 +17,12 @@ rule import_seg:
 rule warp_seg_to_corobl_crop:
     input:
         nii=bids(
-            root=work,
-            datatype="anat",
-            **config["input_wildcards"]["seg"],
-            suffix="dseg.nii.gz"
+            root=work, datatype="anat", **input_wildcards["seg"], suffix="dseg.nii.gz"
         ),
         xfm=bids(
             root=work,
             datatype="warps",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.txt",
             from_="{space}",
             to="corobl",
@@ -50,7 +42,7 @@ rule warp_seg_to_corobl_crop:
         nii=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             space="corobl",
             hemi="{hemi}",
@@ -70,7 +62,7 @@ rule lr_flip_seg:
         nii=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             space="corobl",
             hemi="{hemi}",
@@ -80,7 +72,7 @@ rule lr_flip_seg:
         nii=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             space="corobl",
             hemi="{hemi,L}flip",

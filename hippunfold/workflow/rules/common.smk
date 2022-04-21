@@ -34,7 +34,7 @@ def get_final_spec():
                 space="{space}",
                 label="{autotop}",
                 suffix="surfaces.spec",
-                **config["subj_wildcards"],
+                **subj_wildcards,
             ),
             density=config["output_density"],
             space=ref_spaces,
@@ -51,7 +51,7 @@ def get_final_spec():
                 hemi="{hemi}",
                 label="{autotop}",
                 suffix="surfaces.spec",
-                **config["subj_wildcards"],
+                **subj_wildcards,
             ),
             density=config["output_density"],
             space=ref_spaces,
@@ -72,7 +72,7 @@ def get_final_subfields():
             space="{space}",
             hemi="{hemi}",
             atlas="{atlas}",
-            **config["subj_wildcards"],
+            **subj_wildcards,
         ),
         hemi=config["hemi"],
         space=crop_ref_spaces,
@@ -100,7 +100,7 @@ def get_final_coords():
                 space="{space}",
                 hemi="{hemi}",
                 label="{autotop}",
-                **config["subj_wildcards"],
+                **subj_wildcards,
             ),
             desc="laplace",
             dir=["AP", "PD", "IO"],
@@ -121,7 +121,7 @@ def get_final_coords():
                 space="{space}",
                 hemi="{hemi}",
                 label="hipp",
-                **config["subj_wildcards"],
+                **subj_wildcards,
             ),
             desc=[desc_io],
             dir=["IO"],
@@ -141,7 +141,7 @@ def get_final_transforms():
             bids(
                 root=root,
                 datatype="warps",
-                **config["subj_wildcards"],
+                **subj_wildcards,
                 label="{autotop}",
                 suffix="xfm.nii.gz",
                 hemi="{hemi}",
@@ -161,7 +161,7 @@ def get_final_transforms():
             bids(
                 root=root,
                 datatype="warps",
-                **config["subj_wildcards"],
+                **subj_wildcards,
                 label="{autotop}",
                 suffix="xfm.nii.gz",
                 hemi="{hemi}",
@@ -181,7 +181,7 @@ def get_final_transforms():
             bids(
                 root=root,
                 datatype="warps",
-                **config["subj_wildcards"],
+                **subj_wildcards,
                 label="{autotop}",
                 suffix="refvol.nii.gz",
                 space="unfold",
@@ -209,7 +209,7 @@ def get_final_anat():
                     ),
                     space="{space}",
                     hemi="{hemi}",
-                    **config["subj_wildcards"],
+                    **subj_wildcards,
                 ),
                 space=crop_ref_spaces,
                 hemi=config["hemi"],
@@ -231,7 +231,7 @@ def get_final_qc():
                     suffix="regqc.png",
                     from_="{native_modality}",
                     to=config["template"],
-                    **config["subj_wildcards"],
+                    **subj_wildcards,
                 ),
                 native_modality=template_modality,
                 allow_missing=True,
@@ -247,7 +247,7 @@ def get_final_qc():
                 space="{space}",
                 hemi="{hemi}",
                 atlas="{atlas}",
-                **config["subj_wildcards"],
+                **subj_wildcards,
             ),
             hemi=config["hemi"],
             atlas=config["atlas"],
@@ -266,7 +266,7 @@ def get_final_qc():
                 space="{space}",
                 hemi="{hemi}",
                 label="{autotop}",
-                **config["subj_wildcards"],
+                **subj_wildcards,
             ),
             hemi=config["hemi"],
             autotop=config["autotop_labels"],
@@ -285,7 +285,7 @@ def get_final_qc():
                     space="{space}",
                     atlas="{atlas}",
                     suffix="volumes.png",
-                    **config["subj_wildcards"],
+                    **subj_wildcards,
                 ),
                 space=crop_ref_spaces,
                 atlas=config["atlas"],
@@ -301,7 +301,7 @@ def get_final_qc():
                     desc="unetf3d",
                     suffix="dice.tsv",
                     hemi="{hemi}",
-                    **config["subj_wildcards"],
+                    **subj_wildcards,
                 ),
                 hemi=config["hemi"],
                 allow_missing=True,
@@ -337,8 +337,8 @@ def get_final_output():
         expand(
             subj_output,
             modality_suffix=modality_suffix,
-            subject=config["input_lists"][modality_key]["subject"],
-            session=config["sessions"],
+            subject=input_lists[modality_key]["subject"],
+            session=sessions,
         )
     )
 
@@ -363,12 +363,12 @@ def get_final_work_tar():
         suffix="work.tar.gz",
         include_subject_dir=False,
         include_session_dir=False,
-        **config["subj_wildcards"]
+        **subj_wildcards
     )
 
 
 def get_work_dir(wildcards):
-    folder_with_file = expand(bids(root=work, **config["subj_wildcards"]), **wildcards)
+    folder_with_file = expand(bids(root=work, **subj_wildcards), **wildcards)
     folder_without_file = os.path.dirname(folder_with_file[0])
     return folder_without_file
 

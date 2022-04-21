@@ -10,7 +10,7 @@ rule create_native_crop_ref:
             space="{native_modality}",
             hemi="{hemi}",
             atlas=config["atlas"],
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     params:
         resample="400%",
@@ -22,7 +22,7 @@ rule create_native_crop_ref:
             suffix="cropref.nii.gz",
             space="{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     container:
         config["singularity"]["autotop"]
@@ -37,7 +37,7 @@ rule resample_unet_native_crop:
         nii=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             desc="nnunet",
             space="corobl",
@@ -46,7 +46,7 @@ rule resample_unet_native_crop:
         xfm=bids(
             root=work,
             datatype="warps",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.txt",
             from_="{native_modality}",
             to="corobl",
@@ -59,7 +59,7 @@ rule resample_unet_native_crop:
             suffix="cropref.nii.gz",
             space="{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     output:
         nii=bids(
@@ -69,7 +69,7 @@ rule resample_unet_native_crop:
             desc="unet",
             space="crop{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     container:
         config["singularity"]["autotop"]
@@ -85,7 +85,7 @@ rule resample_postproc_native_crop:
         nii=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             desc="postproc",
             space="corobl",
@@ -94,7 +94,7 @@ rule resample_postproc_native_crop:
         xfm=bids(
             root=work,
             datatype="warps",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.txt",
             from_="{native_modality}",
             to="corobl",
@@ -107,7 +107,7 @@ rule resample_postproc_native_crop:
             suffix="cropref.nii.gz",
             space="{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     output:
         nii=bids(
@@ -117,7 +117,7 @@ rule resample_postproc_native_crop:
             desc="postproc",
             space="crop{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     container:
         config["singularity"]["autotop"]
@@ -138,12 +138,12 @@ rule resample_subfields_native_crop:
             space="corobl",
             hemi="{hemi}",
             atlas="{atlas}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
         xfm=bids(
             root=work,
             datatype="warps",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.txt",
             from_="{native_modality}",
             to="corobl",
@@ -156,7 +156,7 @@ rule resample_subfields_native_crop:
             suffix="cropref.nii.gz",
             space="{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     output:
         nii=bids(
@@ -167,7 +167,7 @@ rule resample_subfields_native_crop:
             space="crop{native_modality}",
             hemi="{hemi}",
             atlas="{atlas}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     container:
         config["singularity"]["autotop"]
@@ -189,12 +189,12 @@ rule resample_coords_native_crop:
             desc="{desc}",
             space="corobl",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
         xfm=bids(
             root=work,
             datatype="warps",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.txt",
             from_="{native_modality}",
             to="corobl",
@@ -207,7 +207,7 @@ rule resample_coords_native_crop:
             suffix="cropref.nii.gz",
             space="{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     output:
         nii=bids(
@@ -219,7 +219,7 @@ rule resample_coords_native_crop:
             space="crop{native_modality}",
             hemi="{hemi}",
             label="{autotop}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     container:
         config["singularity"]["autotop"]
@@ -235,7 +235,7 @@ rule resample_native_to_crop:
         nii=bids(
             root=root,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             desc="preproc",
             suffix="{native_modality}.nii.gz"
         ),
@@ -245,7 +245,7 @@ rule resample_native_to_crop:
             suffix="cropref.nii.gz",
             space="{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     output:
         nii=bids(
@@ -255,7 +255,7 @@ rule resample_native_to_crop:
             suffix="{native_modality}.nii.gz",
             space="crop{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     container:
         config["singularity"]["autotop"]
@@ -273,7 +273,7 @@ def get_xfm_t2_to_t1():
         xfm = bids(
             root=work,
             datatype="warps",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.txt",
             from_="T2w",
             to="{native_modality}",
@@ -288,7 +288,7 @@ rule resample_t2_to_crop:
         nii=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="T2w.nii.gz",
             desc="preproc"
         ),
@@ -298,7 +298,7 @@ rule resample_t2_to_crop:
             suffix="cropref.nii.gz",
             space="{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
         xfm=get_xfm_t2_to_t1(),
     params:
@@ -313,7 +313,7 @@ rule resample_t2_to_crop:
             suffix="T2w.nii.gz",
             space="crop{native_modality}",
             hemi="{hemi}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     container:
         config["singularity"]["autotop"]

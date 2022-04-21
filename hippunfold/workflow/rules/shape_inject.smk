@@ -3,7 +3,7 @@ def get_input_for_shape_inject(wildcards):
         seg = bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             space="corobl",
             hemi="{hemi}"
@@ -14,7 +14,7 @@ def get_input_for_shape_inject(wildcards):
             bids(
                 root=work,
                 datatype="anat",
-                **config["subj_wildcards"],
+                **subj_wildcards,
                 suffix="dseg.nii.gz",
                 space="corobl",
                 hemi="{hemi}",
@@ -25,7 +25,7 @@ def get_input_for_shape_inject(wildcards):
         seg = bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             desc="nnunet",
             space="corobl",
@@ -39,7 +39,7 @@ def get_input_splitseg_for_shape_inject(wildcards):
         seg = bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dsegsplit",
             space="corobl",
             hemi="{hemi}"
@@ -50,7 +50,7 @@ def get_input_splitseg_for_shape_inject(wildcards):
         seg = bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dsegsplit",
             space="corobl",
             hemi="{hemi}",
@@ -60,7 +60,7 @@ def get_input_splitseg_for_shape_inject(wildcards):
         seg = bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dsegsplit",
             desc="nnunet",
             space="corobl",
@@ -102,7 +102,7 @@ rule import_template_shape:
             root=work,
             datatype="anat",
             space="template",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             desc="hipptissue",
             suffix="dseg.nii.gz"
         ),
@@ -163,7 +163,7 @@ rule template_shape_reg:
             root=work,
             datatype="anat",
             space="template",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             desc="hipptissue",
             suffix="dsegsplit"
         ),
@@ -176,7 +176,7 @@ rule template_shape_reg:
     output:
         matrix=bids(
             root=work,
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.txt",
             datatype="warps",
             desc="moments",
@@ -188,7 +188,7 @@ rule template_shape_reg:
         ),
         warp=bids(
             root=work,
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.nii.gz",
             datatype="warps",
             desc="greedy",
@@ -205,7 +205,7 @@ rule template_shape_reg:
     log:
         bids(
             root="logs",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             hemi="{hemi,Lflip|R}",
             suffix="templateshapereg.txt"
         ),
@@ -221,14 +221,14 @@ rule template_shape_inject:
             root=work,
             datatype="anat",
             space="template",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             desc="hipptissue",
             suffix="dseg.nii.gz"
         ),
         subject_seg=get_input_for_shape_inject,
         matrix=bids(
             root=work,
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.txt",
             datatype="warps",
             desc="moments",
@@ -240,7 +240,7 @@ rule template_shape_inject:
         ),
         warp=bids(
             root=work,
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.nii.gz",
             datatype="warps",
             desc="greedy",
@@ -255,7 +255,7 @@ rule template_shape_inject:
         inject_seg=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             desc="inject",
             space="corobl",
@@ -264,7 +264,7 @@ rule template_shape_inject:
     log:
         bids(
             root="logs",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="templateshapeinject.txt",
             hemi="{hemi,Lflip|R}"
         ),
@@ -293,7 +293,7 @@ rule inject_init_laplace_coords:
         subject_seg=get_input_for_shape_inject,
         matrix=bids(
             root=work,
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.txt",
             datatype="warps",
             desc="moments",
@@ -305,7 +305,7 @@ rule inject_init_laplace_coords:
         ),
         warp=bids(
             root=work,
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="xfm.nii.gz",
             datatype="warps",
             desc="greedy",
@@ -320,7 +320,7 @@ rule inject_init_laplace_coords:
         init_coords=bids(
             root=work,
             datatype="coords",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             dir="{dir}",
             label="{autotop}",
             suffix="coords.nii.gz",
@@ -331,7 +331,7 @@ rule inject_init_laplace_coords:
     log:
         bids(
             root="logs",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             dir="{dir}",
             label="{autotop}",
             suffix="injectcoords.txt",
@@ -352,7 +352,7 @@ rule reinsert_subject_labels:
         inject_seg=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             desc="inject",
             space="corobl",
@@ -367,7 +367,7 @@ rule reinsert_subject_labels:
         postproc_seg=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             desc="postproc",
             space="corobl",
@@ -390,7 +390,7 @@ rule unflip_postproc:
             desc="postproc",
             space="corobl",
             hemi="{hemi}flip",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     output:
         nii=bids(
@@ -400,7 +400,7 @@ rule unflip_postproc:
             desc="postproc",
             space="corobl",
             hemi="{hemi,L}",
-            **config["subj_wildcards"]
+            **subj_wildcards
         ),
     container:
         config["singularity"]["autotop"]

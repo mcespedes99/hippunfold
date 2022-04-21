@@ -1,11 +1,11 @@
 rule import_cropseg:
     input:
-        config["input_path"]["cropseg"],
+        input_path["cropseg"],
     output:
         nii=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             space="corobl",
             hemi="{hemi,L|R}"
@@ -21,7 +21,7 @@ rule lr_flip_seg:
         nii=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             space="corobl",
             hemi="{hemi}"
@@ -30,7 +30,7 @@ rule lr_flip_seg:
         nii=bids(
             root=work,
             datatype="anat",
-            **config["subj_wildcards"],
+            **subj_wildcards,
             suffix="dseg.nii.gz",
             space="corobl",
             hemi="{hemi,L}flip"
