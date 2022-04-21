@@ -37,11 +37,13 @@ rule warp_seg_to_corobl_crop:
             desc="affine",
             type_="itk"
         ),
-        ref=workflow.source_path(
+        ref=lambda wildcards: workflow.source_path(
             os.path.join(
                 "..",
                 "..",
-                config["template_files"][config["template"]]["crop_ref"],
+                config["template_files"][config["template"]]["crop_ref"].format(
+                    **wildcards
+                ),
             )
         ),
     output:
