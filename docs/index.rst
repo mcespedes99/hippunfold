@@ -36,6 +36,7 @@
    tutorials/standardBIDS
    tutorials/outputs
    tutorials/specializedScans
+   tutorials/visualization
  
 .. toctree::
    :caption: Contributing
